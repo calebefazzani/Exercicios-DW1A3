@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="exercicios3-calculadora.css">
+    <title>Calculadora</title>
+</head>
+<body>
+    <div class="calculadora">
+        <input type="text" name="resultado" id="resultado" value="0">
+        <button class="clear">AC</button>
+        <button class="porcentagem">%</button>
+        <button class="operacao" value="*">X</button>
+        <button class="operacao" value="/">/</button>
+        <button value="9">9</button>
+        <button value="8">8</button>
+        <button value="7">7</button>
+        <button class="operacao" value="=">=</button>
+        <button value="4">4</button>
+        <button value="5">5</button>
+        <button value="6">6</button>
+        <button class="operacao" value="-">-</button>
+        <button value="1">1</button>
+        <button value="2">2</button>
+        <button value="3">3</button>
+        <button class="operacao cinza" value="+">+</button>
+        <button class="cinza" value="0">0</button>
+        <button value=".">.</button>
+    </div>
+    
+    <script>
+        var operacao = "";
+        var val1 = 0;
+        var flagCount = 0;
+    $('button').on('click', function(){
+        if(!$(this).hasClass('operacao') && !$(this).hasClass('porcentagem')  && !$(this).hasClass('clear')){
+                var valor = $("#resultado").val();
+                $("#resultado").val((valor == "0" || flagCount != 0)? $(this).val() : valor+$(this).val());
+                flagCount = 0;
+           
+            console.log(valor);
+        }else if($(this).hasClass('operacao')){
+            if(operacao == ""){
+
+                operacao = $(this).val();
+                val1 = parseFloat($("#resultado").val());
+                flagCount = 1;
+
+            }else{
+                var val2 = parseFloat($("#resultado").val());
+                val1 = fazerCalculo(val1, val2, operacao);
+                $("#resultado").val(val1);
+                
+                if($(this).hasClass('operacao')){
+                    operacao = $(this).val();
+                }else{
+                    operacao = "";
+                }
+            }
+        }
+    });
+
+    $('.clear').on("click", function(){
+        $("#resultado").val("0");
+        operacao = "";
+        val1 = 0;
+    })
+    $('.porcentagem').on("click",function(){
+        console.log($("#resultado").val())
+       var valPorcentagem = parseFloat($("#resultado").val())/100;
+       val1 = valPorcentagem;
+       $("#resultado").val(valPorcentagem)
+    })
+    function fazerCalculo(val1, val2, operacao){
+        switch(operacao){
+            case "+": return val1 + val2; break;
+            case "-": return val1 - val2; break;
+            case "/": return (val2!= 0)? val1 / val2: "Não é possivel dividir por 0"; break;
+            case "*": return val1 * val2; break;
+            default: return val1;
+        }
+    }
+    </script>
+
+</body>
+</html>

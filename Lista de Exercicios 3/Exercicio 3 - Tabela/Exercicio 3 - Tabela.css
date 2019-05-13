@@ -1,0 +1,6 @@
+.conteiner{width: 960px; margin: 0 auto;}
+.conteiner > div > * {width: 50%;margin: 0;float: left; padding-bottom: 20px}
+.conteiner figcaption{font-size: 10px}
+img{width: 100%}
+.conteiner table{width: 100%; margin-top: 20px; border: 2px solid #000}
+.conteiner table *{ border: 2px solid #000}

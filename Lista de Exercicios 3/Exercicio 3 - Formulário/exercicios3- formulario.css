@@ -1,0 +1,6 @@
+form{width: 500px; margin: 0 auto; }
+form fieldset{display: grid; grid-template-columns: 90px 1fr; grid-gap: 20px; font-family: 'Ubuntu', sans-serif;background: #e1e1e1; color: #999999}
+legend{color: #000}
+label[for="mensagem"], #mensagem{grid-column: 1/-1}
+#mensagem{resize: none}
+button{grid-column: 1/-1}
